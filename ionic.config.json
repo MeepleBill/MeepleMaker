@@ -1,0 +1,7 @@
+{
+  "name": "meeple-maker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
