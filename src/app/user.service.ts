@@ -22,7 +22,6 @@ export class UserService {
 
   // Get a single user by ID
   getUserById(id: number): Observable<any> {
-    prompt(`${this.baseUrl}/${id}`)
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 

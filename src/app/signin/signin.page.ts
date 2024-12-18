@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { LobbyService } from '../lobby.service';
 
 @Component({
   selector: 'app-signin',
@@ -8,16 +9,36 @@ import { UserService } from '../user.service';
 })
 export class SigninPage implements OnInit {
 
-  constructor(private userService: UserService) { 
-    userService.getUserById(4).subscribe({
+  constructor(private userService: UserService, private lobbyService: LobbyService) { 
+    lobbyService.listen("anwser").subscribe({
       next: (data) => {
         console.log('Response:', data); // Debugging response.
-        prompt(JSON.stringify(data)); // Convert object to a string for the prompt.
       },
       error: (err) => {
         console.error('Error:', err); // Log any errors.
       },
     });
+    userService.getUserById(4).subscribe({
+      next: (data) => {
+        console.log('Response:', data); // Debugging response.
+      },
+      error: (err) => {
+        console.error('Error:', err); // Log any errors.
+      },
+    });
+
+    prompt('0')
+
+    let data = lobbyService.emit('createLobby', 'blabla')
+
+    console.log(data)
+    console.log("0")
+
+    
+
+    data = lobbyService.emit('createLobby', 'blabla')
+    console.log('2')
+
   }
 
   ngOnInit() {
